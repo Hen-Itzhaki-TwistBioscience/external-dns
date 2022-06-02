@@ -42,7 +42,7 @@ import (
 type httpProxySource struct {
 	dynamicKubeClient        dynamic.Interface
 	namespace                string
-	annotationFilter         string
+	annotationFilter         []string
 	fqdnTemplate             *template.Template
 	combineFQDNAnnotation    bool
 	ignoreHostnameAnnotation bool
@@ -55,7 +55,7 @@ func NewContourHTTPProxySource(
 	ctx context.Context,
 	dynamicKubeClient dynamic.Interface,
 	namespace string,
-	annotationFilter string,
+	annotationFilter []string,
 	fqdnTemplate string,
 	combineFqdnAnnotation bool,
 	ignoreHostnameAnnotation bool,

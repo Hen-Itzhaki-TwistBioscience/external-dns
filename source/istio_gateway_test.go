@@ -102,7 +102,7 @@ func TestNewIstioGatewaySource(t *testing.T) {
 
 	for _, ti := range []struct {
 		title                    string
-		annotationFilter         string
+		annotationFilter         []string
 		fqdnTemplate             string
 		combineFQDNAndAnnotation bool
 		expectError              bool
@@ -135,7 +135,7 @@ func TestNewIstioGatewaySource(t *testing.T) {
 		{
 			title:            "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "kubernetes.io/gateway.class=nginx",
+			annotationFilter: []string{"kubernetes.io/gateway.class=nginx","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 	} {
 		ti := ti
@@ -340,7 +340,7 @@ func testGatewayEndpoints(t *testing.T) {
 	for _, ti := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter        [] string
 		lbServices               []fakeIngressGatewayService
 		configItems              []fakeGatewayConfig
 		expected                 []*endpoint.Endpoint

@@ -43,7 +43,7 @@ import (
 type ocpRouteSource struct {
 	client                   versioned.Interface
 	namespace                string
-	annotationFilter         string
+	annotationFilter         []string
 	fqdnTemplate             *template.Template
 	combineFQDNAnnotation    bool
 	ignoreHostnameAnnotation bool
@@ -57,7 +57,7 @@ func NewOcpRouteSource(
 	ctx context.Context,
 	ocpClient versioned.Interface,
 	namespace string,
-	annotationFilter string,
+	annotationFilter []string,
 	fqdnTemplate string,
 	combineFQDNAnnotation bool,
 	ignoreHostnameAnnotation bool,

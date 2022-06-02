@@ -44,7 +44,7 @@ var ErrSourceNotFound = errors.New("source not found")
 // Config holds shared configuration options for all Sources.
 type Config struct {
 	Namespace                      string
-	AnnotationFilter               string
+	AnnotationFilter               []string
 	LabelFilter                    labels.Selector
 	FQDNTemplate                   string
 	CombineFQDNAndAnnotation       bool

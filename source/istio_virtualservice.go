@@ -49,7 +49,7 @@ type virtualServiceSource struct {
 	kubeClient               kubernetes.Interface
 	istioClient              istioclient.Interface
 	namespace                string
-	annotationFilter         string
+	annotationFilter         []string
 	fqdnTemplate             *template.Template
 	combineFQDNAnnotation    bool
 	ignoreHostnameAnnotation bool
@@ -63,7 +63,7 @@ func NewIstioVirtualServiceSource(
 	kubeClient kubernetes.Interface,
 	istioClient istioclient.Interface,
 	namespace string,
-	annotationFilter string,
+	annotationFilter []string,
 	fqdnTemplate string,
 	combineFQDNAnnotation bool,
 	ignoreHostnameAnnotation bool,

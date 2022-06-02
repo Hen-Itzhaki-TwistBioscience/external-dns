@@ -125,7 +125,7 @@ func TestNewIstioVirtualServiceSource(t *testing.T) {
 
 	for _, ti := range []struct {
 		title                    string
-		annotationFilter         string
+		annotationFilter         []string
 		fqdnTemplate             string
 		combineFQDNAndAnnotation bool
 		expectError              bool
@@ -158,7 +158,7 @@ func TestNewIstioVirtualServiceSource(t *testing.T) {
 		{
 			title:            "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "kubernetes.io/gateway.class=nginx",
+			annotationFilter: []string{"contour.heptio.com/ingress.class=contour","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 	} {
 		ti := ti
@@ -571,7 +571,7 @@ func testVirtualServiceEndpoints(t *testing.T) {
 	for _, ti := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter        [] string
 		lbServices               []fakeIngressGatewayService
 		gwConfigs                []fakeGatewayConfig
 		vsConfigs                []fakeVirtualServiceConfig

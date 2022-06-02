@@ -52,7 +52,7 @@ const (
 type ingressSource struct {
 	client                   kubernetes.Interface
 	namespace                string
-	annotationFilter         string
+	annotationFilter         []string
 	fqdnTemplate             *template.Template
 	combineFQDNAnnotation    bool
 	ignoreHostnameAnnotation bool

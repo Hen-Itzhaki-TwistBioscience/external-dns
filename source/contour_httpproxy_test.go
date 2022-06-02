@@ -142,7 +142,7 @@ func TestNewContourHTTPProxySource(t *testing.T) {
 
 	for _, ti := range []struct {
 		title                    string
-		annotationFilter         string
+		annotationFilter         []string
 		fqdnTemplate             string
 		combineFQDNAndAnnotation bool
 		expectError              bool
@@ -175,7 +175,7 @@ func TestNewContourHTTPProxySource(t *testing.T) {
 		{
 			title:            "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "contour.heptio.com/ingress.class=contour",
+			annotationFilter: []string{"contour.heptio.com/ingress.class=contour","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 	} {
 		ti := ti
@@ -308,7 +308,7 @@ func testHTTPProxyEndpoints(t *testing.T) {
 	for _, ti := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter         []string
 		loadBalancer             fakeLoadBalancerService
 		httpProxyItems           []fakeHTTPProxy
 		expected                 []*endpoint.Endpoint

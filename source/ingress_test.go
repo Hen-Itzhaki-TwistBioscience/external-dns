@@ -98,7 +98,7 @@ func TestNewIngressSource(t *testing.T) {
 
 	for _, ti := range []struct {
 		title                    string
-		annotationFilter         string
+		annotationFilter        [] string
 		fqdnTemplate             string
 		combineFQDNAndAnnotation bool
 		expectError              bool
@@ -131,7 +131,7 @@ func TestNewIngressSource(t *testing.T) {
 		{
 			title:            "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "kubernetes.io/ingress.class=nginx",
+			[]string{"kubernetes.io/ingress.class=nginx","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 	} {
 		ti := ti
@@ -354,7 +354,7 @@ func testIngressEndpoints(t *testing.T) {
 	for _, ti := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter        [] string
 		ingressItems             []fakeIngress
 		expected                 []*endpoint.Endpoint
 		expectError              bool

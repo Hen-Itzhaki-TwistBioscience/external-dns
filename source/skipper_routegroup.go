@@ -51,7 +51,7 @@ type routeGroupSource struct {
 	apiServer                string
 	namespace                string
 	apiEndpoint              string
-	annotationFilter         string
+	annotationFilter         []string
 	fqdnTemplate             *template.Template
 	combineFQDNAnnotation    bool
 	ignoreHostnameAnnotation bool

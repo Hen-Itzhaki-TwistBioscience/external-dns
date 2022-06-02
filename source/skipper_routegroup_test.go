@@ -795,7 +795,7 @@ func TestDualstackLabelIsSet(t *testing.T) {
 func TestParseTemplate(t *testing.T) {
 	for _, tt := range []struct {
 		name                     string
-		annotationFilter         string
+		annotationFilter         []string
 		fqdnTemplate             string
 		combineFQDNAndAnnotation bool
 		expectError              bool
@@ -828,7 +828,7 @@ func TestParseTemplate(t *testing.T) {
 		{
 			name:             "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "kubernetes.io/ingress.class=nginx",
+			annotationFilter: []string{"kubernetes.io/ingress.class=nginx","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 	} {
 		t.Run(tt.name, func(t *testing.T) {

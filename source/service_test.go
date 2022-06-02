@@ -110,7 +110,7 @@ func testServiceSourceNewServiceSource(t *testing.T) {
 
 	for _, ti := range []struct {
 		title              string
-		annotationFilter   string
+		annotationFilter   []string
 		fqdnTemplate       string
 		serviceTypesFilter []string
 		expectError        bool
@@ -132,7 +132,7 @@ func testServiceSourceNewServiceSource(t *testing.T) {
 		{
 			title:            "non-empty annotation filter label",
 			expectError:      false,
-			annotationFilter: "kubernetes.io/ingress.class=nginx",
+			annotationFilter: []string{"kubernetes.io/ingress.class=nginx","external-dns.alpha.kubernetes.io/exclude notin (true)"},
 		},
 		{
 			title:              "non-empty service types filter",
@@ -176,7 +176,7 @@ func testServiceSourceEndpoints(t *testing.T) {
 	for _, tc := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter        [] string
 		svcNamespace             string
 		svcName                  string
 		svcType                  v1.ServiceType
@@ -1078,7 +1078,7 @@ func testMultipleServicesEndpoints(t *testing.T) {
 	for _, tc := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter         []string
 		svcNamespace             string
 		svcName                  string
 		svcType                  v1.ServiceType
@@ -1279,7 +1279,7 @@ func TestClusterIpServices(t *testing.T) {
 	for _, tc := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter         []string
 		svcNamespace             string
 		svcName                  string
 		svcType                  v1.ServiceType
@@ -1431,7 +1431,7 @@ func TestServiceSourceNodePortServices(t *testing.T) {
 	for _, tc := range []struct {
 		title                    string
 		targetNamespace          string
-		annotationFilter         string
+		annotationFilter         []string
 		svcNamespace             string
 		svcName                  string
 		svcType                  v1.ServiceType
